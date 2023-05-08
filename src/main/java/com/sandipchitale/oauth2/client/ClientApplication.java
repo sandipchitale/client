@@ -13,16 +13,16 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Profiles;
-// import org.springframework.http.HttpEntity;
-// import org.springframework.http.HttpHeaders;
-// import org.springframework.http.HttpMethod;
-// import org.springframework.http.ResponseEntity;
-// import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.security.oauth2.client.AuthorizedClientServiceOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.OAuth2AuthorizeRequest;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
-// import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.stereotype.Component;
 
 @SpringBootApplication
@@ -75,22 +75,23 @@ public class ClientApplication {
 			System.out.println("Token: " + accessToken.getTokenValue());
 
 			// Add the JWT to the RestTemplate headers
-			// HttpHeaders headers = new HttpHeaders();
-			// headers.add("Authorization", "Bearer " + accessToken.getTokenValue());
-			// HttpEntity<String> request = new HttpEntity<>(headers);
+			HttpHeaders headers = new HttpHeaders();
+			headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken.getTokenValue());
+			headers.add(HttpHeaders.ACCEPT, "application/json; okta-version=1.0.0");
+			HttpEntity<?> request = new HttpEntity<>(headers);
 
 			// Make the actual HTTP GET request
-			// RestTemplate restTemplate = new RestTemplate();
-			// restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+			RestTemplate restTemplate = new RestTemplate();
+			restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 
-			// ResponseEntity<String> response = restTemplate.exchange(
-			// 		"https://dev-76041835-admin.okta.com/idp/myaccount/emails",
-			// 		HttpMethod.GET,
-			// 		request,
-			// 		String.class);
+			ResponseEntity<String> response = restTemplate.exchange(
+					"https://dev-76041835-admin.okta.com/idp/myaccount/emails",
+					HttpMethod.GET,
+					request,
+					String.class);
 
-			// String result = response.getBody();
-			// System.out.println("Reply = " + result);
+			String result = response.getBody();
+			System.out.println("Reply = " + result);
 		}
 	}
 }
