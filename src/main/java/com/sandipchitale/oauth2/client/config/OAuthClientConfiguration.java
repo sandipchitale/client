@@ -15,6 +15,7 @@ public class OAuthClientConfiguration {
 
     // Create the Github client registration
     @Bean
+    @Profile("okta")
     ClientRegistration oktaClientRegistration() {
         ClientRegistration clientRegistration =
                 ClientRegistrations.fromIssuerLocation("https://dev-76041835.okta.com/oauth2/default")
