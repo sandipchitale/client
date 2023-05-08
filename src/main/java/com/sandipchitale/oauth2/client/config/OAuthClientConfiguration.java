@@ -19,9 +19,9 @@ public class OAuthClientConfiguration {
         ClientRegistration clientRegistration =
                 ClientRegistrations.fromIssuerLocation("https://dev-76041835.okta.com/oauth2/default")
                 .registrationId("okta")
-                .clientName("sandipChitale")
+                .clientName("")
                 .clientId("")
-                .clientSecret("")
+                .clientSecret("LQK75daBc9IobYOoIrbXnJXV4Ew_v_AUGexdgAMA")
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
                 .scope("okta.myAccount.email.read")
                 .build();
