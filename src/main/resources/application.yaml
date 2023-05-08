@@ -1,11 +1,13 @@
 spring:
     application:
         name: client
+    profiles:
+        active: okta
 logging:
     level:
         root: WARN
-        '[org.springframework.web]': TRACE
-        '[org.springframework.http]': TRACE
-        '[org.apache.http]': TRACE
-        '[org.apache.hc.client5.http]': TRACE
+        '[org.springframework.web]': OFF
+        '[org.springframework.http]': OFF
+        '[org.apache.http]': OFF
+        '[org.apache.hc.client5.http]': OFF
 
