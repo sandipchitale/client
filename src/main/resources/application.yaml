@@ -1,0 +1,11 @@
+spring:
+    application:
+        name: client
+logging:
+    level:
+        root: WARN
+        '[org.springframework.web]': TRACE
+        '[org.springframework.http]': TRACE
+        '[org.apache.http]': TRACE
+        '[org.apache.hc.client5.http]': TRACE
+
